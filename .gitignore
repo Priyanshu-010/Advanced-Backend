@@ -1,4 +1,43 @@
 .env
 .env.local
 
-node_modules
+# Dependencies
+node_modules/
+jspm_packages/
+
+# TypeScript
+dist/
+*.tsbuildinfo
+*.d.ts
+
+# Node
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# IDEs
+.vscode/
+.idea/
+*.code-workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Coverage
+coverage/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo   
