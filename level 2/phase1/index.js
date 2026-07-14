@@ -19,9 +19,12 @@ app.get("/", (req, res)=>{
   })
 })
 
+// Cache in redis
+
 app.post("/create", async (req, res)=>{
   const {name, email, password} = req.body
   const user = await User.create({name, email, password})
+  await redis.del("user:all")
   return res.status(200).json(user)
 })
 
@@ -42,6 +45,15 @@ app.get("/get-with-redis", async (req, res)=>{
   await redis.set("user:all", JSON.stringify(users))
   console.log("rest")
   return res.status(200).json(users)
+})
+
+// OTP storage
+
+app.post("/send-otp", async (req, res)=>{
+  
+  const {email} = req.body
+  const otp = Math.floor(100000+ Math.random()*900000).toString()
+  await redis.set(`otp:${email}`, otp)
 })
 
 app.listen(port, ()=>{
